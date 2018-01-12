@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>MyClientList</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+  <h1 class="title">Client List</h1>
+  <section class="list-container">
+    <input id="search_Input" class="input" type="text" placeholder="Search name..."></input>
+    <ul>
+      <ul class="list">
+        <li class="list_item list_item--header">A</li>
+        <div class="list-box">
+          <li class="list_item list_item--name">Ada Kubczyk</li>
+          <li class="list_item list_item--number">593428740</li>
+        </div>
+        <div class="list-box">
+          <li class="list_item list_item--name">Adrian Zasadzka</li>
+          <li class="list_item list_item--number">189236547</li>
+        </div>
+      </ul>
+      <ul class="list">
+        <li class="list_item list_item--header">B</li>
+        <div class="list-box">
+          <li class="list_item list_item--name">Bartosz Duda</li>
+          <li class="list_item list_item--number">985324756</li>
+        </div>
+        <div class="list-box">
+          <li class="list_item list_item--name">Bogdan Zdrajca</li>
+          <li class="list_item list_item--number">741852963</li>
+        </div>
+      </ul>
+    </ul>
+  </section>
+  <section class="new-client-container">
+    <div class="keeper">
+      <input id="add_Name" class="input input--bottom" type="text" placeholder="Name..."></input>
+      <input id="add_Number" class="input input--bottom" type="text" placeholder="Number..."></input>
+      <button class="new_btn">Add</button>
+    </div>
+  </section>
+  <script src="script.js"></script>
+</body>
+</html>

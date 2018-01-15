@@ -62,6 +62,7 @@ ul{
   color: var(--font-color);
   font-size: var(--font-normal);
   padding: var(--space-normal);
+  min-width: 400px;
 }
 
 .list-container{

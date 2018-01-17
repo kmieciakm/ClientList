@@ -32,7 +32,7 @@ body{
 }
 
 .title{
-  width: 100%;
+  min-width: 100%;
   text-align: center;
   font-weight: 400;
   color: var(--title-color);
@@ -119,12 +119,19 @@ ul{
   html{
     font-size: 14px;
   }
+  .title{
+    width: 100vw !important;
+  }
   .list-box{
+    min-width: 320px;
+  }
+  ul{
     min-width: 320px;
   }
   .input--bottom{
     width: 50%;
-    margin-left: 25%;
+    margin-left: 50%;
+    transform: translate(-50%);
 
   }
   .list-container{

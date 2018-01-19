@@ -36,6 +36,9 @@ document.addEventListener("DOMContentLoaded",function(){
     function addClient(){
         let name = document.getElementById("add_Name").value;
         let number = document.getElementById("add_Number").value;
+        //input cleaner
+        document.getElementById("add_Name").value= "";
+        document.getElementById("add_Number").value = "";
         // wrong date
         if(number<0)
             number*=-1;
@@ -107,17 +110,21 @@ document.addEventListener("DOMContentLoaded",function(){
         let clientToRemoveId = Number(event.target.getAttribute("name"));
         let transaction = db.transaction(["clients"],"readwrite");
         let store = transaction.objectStore("clients");
-        
-        //remove client from database
-        request = store.delete(clientToRemoveId);
-        request.onsuccess = function(){
-            alert("Removed client");
+        //confirm
+        let verify = confirm("You are trying to remove the client.\nAre you sure?");
+        if(verify){
+            //remove client from database
+            request = store.delete(clientToRemoveId);
+            request.onsuccess = function(){
+                alert("Removed client");
+            }
+            request.onerror = function(event){
+                alert("Sorry, the client was not deleted");
+                console.log("Error: "+event.target.error.name);
+            }
+            showClients();            
+        }else{
+            alert("The client was not deleted");
         }
-        request.onerror = function(event){
-            alert("Sorry, the client was not deleted");
-            console.log("Error: "+event.target.error.name);
-        }
-        showClients();
     }
-
 });

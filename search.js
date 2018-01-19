@@ -5,10 +5,10 @@ document.addEventListener("DOMContentLoaded", function(){
     let lists = document.getElementsByClassName("list");
     search_Input.addEventListener("input",function(){
         let value = search_Input.value;
-        showClients(value);
+        showList(value);
     });
     // show match Client function
-    function showClients(value){
+    function showList(value){
         // show/hide clients
         for(var i=0; i<items.length; i++){ 
             let name = items[i].getElementsByClassName("list_item--name")[0];

@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded",function(){
         request.onsuccess = function(event){
             console.log("Success open batabase");
             db = event.target.result;
-            showClient();
+            showClients();
         };
         //onupgrageneeded BD function
         request.onupgradeneeded = function(event){
@@ -29,8 +29,8 @@ document.addEventListener("DOMContentLoaded",function(){
     }
 
     // button Event Listener (adding client)
-    let btn = document.getElementsByClassName("new_btn")[0];
-    btn.addEventListener('click',addClient);
+    let add_btn = document.getElementsByClassName("add_btn")[0];
+    add_btn.addEventListener('click',addClient);
     
     //adding client function
     function addClient(){
@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded",function(){
             request = store.add(client);
             request.onsuccess = function(){
                 alert("Added client");
-                showClient();
+                showClients();
             }
             request.onerror = function(event){
                 alert("Sorry, the client was not added");
@@ -62,8 +62,8 @@ document.addEventListener("DOMContentLoaded",function(){
         }
     }
 
-    //getting data to DOM 
-    function showClient(e){
+    //getting data to DOM, show client function
+    function showClients(e){
         let transaction = db.transaction(["clients"],"readonly");
         let store = transaction.objectStore("clients");
         let index = store.index('name');
@@ -83,17 +83,41 @@ document.addEventListener("DOMContentLoaded",function(){
                             +"<li class='list_item list_item--header'>"+cursor.value.name[0].toUpperCase()+"</li>";
                     }
                     output +="<div class='list-box'>"
-                        +"<li class='list_item list_item--name'>"+cursor.value.name+"</li>"
-                        +"<li class='list_item list_item--number'>"+cursor.value.number+"</li>"
-                        +"</div>";
+                            +"<li class='list_item list_item--name'>"+cursor.value.name+"</li>"
+                                +"<li class='list_item list_item--number'>"+cursor.value.number
+                                    +"<span class='list_item list_item--remove' name="+cursor.value.id+">&times;</span>"
+                                +"</li>"
+                            +"</div>";
                     //continue
                     lastLetter = currentLetter;
                     cursor.continue();
             }
             //show in DOM
             document.getElementById("client_output").innerHTML = output;
-            console.log(output);
+
+            // button Event Listener (removing client button)
+            let remove_btn = document.getElementsByClassName("list_item--remove");
+            for(var i=0; i<remove_btn.length; i++)
+                remove_btn[i].addEventListener('click',removeClient);
         }
+    }
+
+    //remove client function
+    function removeClient(event){
+        let clientToRemoveId = Number(event.target.getAttribute("name"));
+        let transaction = db.transaction(["clients"],"readwrite");
+        let store = transaction.objectStore("clients");
+        
+        //remove client from database
+        request = store.delete(clientToRemoveId);
+        request.onsuccess = function(){
+            alert("Removed client");
+        }
+        request.onerror = function(event){
+            alert("Sorry, the client was not deleted");
+            console.log("Error: "+event.target.error.name);
+        }
+        showClients();
     }
 
 });

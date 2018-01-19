@@ -4,6 +4,9 @@
   --ul-color: #7FC7C3;
   --bg-color: #F4F4ED;
   --title-color: #222;
+  --remove-color: #FC4442;
+  --new-client-color: #1d1d1d;
+  --list-header: #1A1924;
   /* size */
   --font-huge: 4rem;
   --font-big: 2rem;
@@ -86,10 +89,16 @@ ul{
 
 .list_item--header{
   font-size: var(--font-big);
-  color: #1A1924;
+  color: var(--list-header);
   padding: var(--space-small);
   padding-left: 0;
   font-weight: 700;
+}
+
+.list_item--remove{
+  color: var(--remove-color);
+  cursor: pointer;
+  margin-left: var(--space-small);
 }
 
 /* footer */
@@ -99,13 +108,13 @@ ul{
   bottom: 0;
   width: 100%;
   padding: var(--space-normal);
-  background-color: #1d1d1d;
+  background-color: var(--new-client-color);
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
 }
 
-.new_btn{
+.add_btn{
   padding: var(--space-small) var(--space-normal) var(--space-small) var(--space-normal);
   font-size: var(--font-small);
   color: var(--font-color);
@@ -132,7 +141,6 @@ ul{
     width: 50%;
     margin-left: 50%;
     transform: translate(-50%);
-
   }
   .list-container{
     margin-bottom: 10rem;
